@@ -209,42 +209,43 @@ const ProductsScreen = () => {
         </Pressable>
       </View>
       <Modal
-        visible={editModalVisible}
-        transparent={true}
-        onRequestClose={() => setEditModalVisible(false)}
+  visible={editModalVisible}
+  transparent={true}
+  onRequestClose={() => setEditModalVisible(false)}
+>
+  <View style={styles.modalContainer}>
+    <View style={styles.modalContent}>
+      <TextInput
+        style={styles.input}
+        placeholder="Product Name"
+        value={productName}
+        onChangeText={(text) => setProductName(text)}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Product Price"
+        keyboardType="numeric"
+        value={productPrice}
+        onChangeText={(text) => setProductPrice(text)}
+      />
+      <Pressable
+        style={styles.button}
+        onPress={() => {
+          pickFile();
+        }}
       >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <TextInput
-              style={styles.input}
-              placeholder="Product Name"
-              value={productName}
-              onChangeText={(text) => setProductName(text)}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="Product Price"
-              keyboardType="numeric"
-              value={productPrice}
-              onChangeText={(text) => setProductPrice(text)}
-            />
-            <Pressable
-              style={styles.button}
-              onPress={() => {
-                pickFile();
-              }}
-            >
-              <Text style={[styles.text, styles.textButton]}>
-                {" "}
-                Choose Image
-              </Text>
-            </Pressable>
-            <Pressable style={styles.button} onPress={handleUpdateProduct}>
-              <Text style={styles.buttonText}>Save Changes</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
+        <Text style={[styles.text, styles.textButton]}>Choose Image</Text>
+      </Pressable>
+      <Pressable style={styles.button} onPress={handleUpdateProduct}>
+        <Text style={styles.buttonText}>Save Changes</Text>
+      </Pressable>
+      <Pressable style={styles.button} onPress={() => setEditModalVisible(false)}>
+        <Text style={styles.buttonText}>Close Modal</Text>
+      </Pressable>
+    </View>
+  </View>
+</Modal>
+
     </View>
   );
 };

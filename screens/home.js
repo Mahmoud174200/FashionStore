@@ -258,7 +258,8 @@ const styles = StyleSheet.create({
     height: 35,
     fontSize: 13,
     backgroundColor: "white",
-    width: 220,
+    width: 200,
+    color:"black"
   },
   arrowButton: {
     position: "absolute",

@@ -7,6 +7,7 @@ import {
   FlatList,
   Modal,
   TextInput,
+  Image
 } from "react-native";
 import {
   CreateUser,
@@ -15,6 +16,8 @@ import {
   deleteUser,
   subscribe,
 } from "../firebase/users";
+import { Link, router } from "expo-router";
+
 
 const UsersScreen = () => {
   const [editModalVisible, setEditModalVisible] = useState(false);
@@ -92,7 +95,14 @@ const UsersScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Pressable  onPress={() => router.replace("/Profile")}>
+        <Image
+          style={{ width: 25, height: 25, margin: 3 }}
+          source={require("../assets/images/th_1.jpg")}
+        />
+      </Pressable>
       <Text style={styles.title}>Users</Text>
+
       <Pressable
         onPress={() => setAddModalVisible(true)}
         style={styles.addButton}

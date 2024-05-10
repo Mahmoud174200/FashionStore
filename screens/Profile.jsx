@@ -33,15 +33,18 @@ const Dashboard = () => {
   const handleLogout = () => {
     signOutHandler();
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
         {userData ? (
           <>
-            <Image
-              source={{ uri: userData.image }}
-              style={styles.profileImage}
-            />
+            <View style={[styles.profileContainer, { justifyContent: 'center' }]}>
+              <Image
+                source={{ uri: userData.image }}
+                style={styles.profileImage}
+              />
+            </View>
             <Text style={styles.label}>Name:</Text>
             <Text style={styles.text}>
               {userData.firstName} {userData.lastName}
@@ -58,15 +61,12 @@ const Dashboard = () => {
             >
               <Text style={styles.buttonText}>Edit Profile</Text>
             </Pressable>
-            {/* <Pressable onPress={() => {router.replace("/account/UpdatePassword")}} style={styles.button}>
-              <Text style={styles.logoutText}>ChangePassword</Text>
-            </Pressable> */}
             {isadmin ? (
               <Pressable
                 style={styles.button}
                 onPress={() => router.replace("/home/AdminBoard")}
               >
-                <Text style={styles.buttonText}>Admin Panal</Text>
+                <Text style={styles.buttonText}>Admin Panel</Text>
               </Pressable>
             ) : (
               <View></View>
@@ -83,6 +83,7 @@ const Dashboard = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -91,11 +92,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f5f5",
   },
   profileContainer: {
-    flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     marginBottom: 20,
-    marginTop: 40, // Add margin to move the container down
+    marginTop: 40,
   },
+  
   profileImage: {
     width: 200,
     height: 200,

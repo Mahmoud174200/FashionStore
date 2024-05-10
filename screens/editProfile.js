@@ -95,7 +95,7 @@ const EditProfile = () => {
           pickFile();
         }}
       >
-        <Text>Change Image Profile</Text>
+        <Text style={styles.buttonText}>Change Image Profile</Text>
       </Pressable>
       <Pressable style={styles.button} onPress={handleSubmit}>
         <Text style={styles.buttonText}>Save</Text>

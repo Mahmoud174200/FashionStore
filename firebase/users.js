@@ -37,6 +37,8 @@ const updateUser = async (data, uuid) => {
     const documentReference = doc(db, "users", user.id);
     await updateDoc(documentReference, data);
     console.log("user updated successfully!");
+    alert("user updated successfully!");
+
     return user;
   } catch (err) {
     console.log("updateUser: ", err.message);
@@ -88,6 +90,8 @@ const deleteUser = async (id) => {
   try {
     await deleteDoc(docReference);
     console.log("Success to Delete Users");
+    alert("Success to Delete Users");
+
   } catch (err) {
     console.log("deleteUser: ", err.message);
   }

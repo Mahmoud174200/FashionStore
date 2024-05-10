@@ -18,6 +18,8 @@ import {
     try {
       await addDoc(ratesCollection, rateData);
       console.log("Rate added successfully.");
+      alert("Rate added successfully.");
+
     } catch (error) {
       console.error("Error adding rate:", error);
     }
@@ -68,6 +70,8 @@ import {
         const rateDoc = querySnapshot.docs[0]; // Assuming there's only one matching rate
         await deleteDoc(rateDoc.ref);
         console.log("Rate deleted successfully.");
+        alert("Rate deleted successfully.");
+
       } else {
         console.log("No matching rate found.");
       }

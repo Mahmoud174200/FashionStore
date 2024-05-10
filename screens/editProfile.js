@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { getCurrentUserUuid, getUser, updateUser } from "../firebase/users";
 import * as ImagePicker from "expo-image-picker";
+import { router } from "expo-router";
 
 const EditProfile = () => {
   const [userdata, setUserData] = useState(null);
@@ -57,9 +58,11 @@ const EditProfile = () => {
         aspect: [4, 3],
         quality: 1,
       });
-      if (!result.cancelled) {
+      if (!result.canceled) {
         setImage(result.assets[0].uri);
       }
+      alert("Image Uploaded");
+
     } catch (error) {
       console.error("Error Picking Image:", error);
     }

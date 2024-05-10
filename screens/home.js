@@ -20,7 +20,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getCurrentUserUuid, getUser } from "../firebase/users";
 import { onSnapshot, collection } from "firebase/firestore";
 import { db } from "../firebase/Config";
-import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 
 const Home = () => {
@@ -30,7 +29,6 @@ const Home = () => {
   const [searchText, setSearchText] = useState("");
   const [products, setProducts] = useState([]);
   const [userData, setUserData] = useState(null);
-  const [isadmin, setAdmin] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState("");
 

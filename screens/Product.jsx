@@ -42,7 +42,7 @@ const ProductsScreen = () => {
     await AsyncStorage.setItem("products", JSON.stringify(c));
     if (!c) {
       const storedProducts = await AsyncStorage.getItem("products");
-      setProducts(JSON.parse(storedProducts)); // Parse the stored products
+      setProducts(JSON.parse(storedProducts));
     }
   };
 
@@ -98,7 +98,7 @@ const ProductsScreen = () => {
       setProductName("");
       setProductPrice("");
       setImage(null);
-      setUrl(""); // Clear URL state after adding product
+      setUrl("");
     } catch (error) {
       console.error("Error creating product:", error);
       alert("An error occurred while creating the product.");
@@ -204,48 +204,53 @@ const ProductsScreen = () => {
             </View>
           )}
         />
-        <Pressable style={styles.button} onPress={() => router.replace("/home/AdminBoard")}>
+        <Pressable
+          style={styles.button}
+          onPress={() => router.replace("/home/AdminBoard")}
+        >
           <Text style={{ color: "white" }}>Back</Text>
         </Pressable>
       </View>
       <Modal
-  visible={editModalVisible}
-  transparent={true}
-  onRequestClose={() => setEditModalVisible(false)}
->
-  <View style={styles.modalContainer}>
-    <View style={styles.modalContent}>
-      <TextInput
-        style={styles.input}
-        placeholder="Product Name"
-        value={productName}
-        onChangeText={(text) => setProductName(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Product Price"
-        keyboardType="numeric"
-        value={productPrice}
-        onChangeText={(text) => setProductPrice(text)}
-      />
-      <Pressable
-        style={styles.button}
-        onPress={() => {
-          pickFile();
-        }}
+        visible={editModalVisible}
+        transparent={true}
+        onRequestClose={() => setEditModalVisible(false)}
       >
-        <Text style={[styles.text, styles.textButton]}>Choose Image</Text>
-      </Pressable>
-      <Pressable style={styles.button} onPress={handleUpdateProduct}>
-        <Text style={styles.buttonText}>Save Changes</Text>
-      </Pressable>
-      <Pressable style={styles.button} onPress={() => setEditModalVisible(false)}>
-        <Text style={styles.buttonText}>Close Modal</Text>
-      </Pressable>
-    </View>
-  </View>
-</Modal>
-
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <TextInput
+              style={styles.input}
+              placeholder="Product Name"
+              value={productName}
+              onChangeText={(text) => setProductName(text)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Product Price"
+              keyboardType="numeric"
+              value={productPrice}
+              onChangeText={(text) => setProductPrice(text)}
+            />
+            <Pressable
+              style={styles.button}
+              onPress={() => {
+                pickFile();
+              }}
+            >
+              <Text style={[styles.text, styles.buttonText]}>Choose Image</Text>
+            </Pressable>
+            <Pressable style={styles.button} onPress={handleUpdateProduct}>
+              <Text style={styles.buttonText}>Save Changes</Text>
+            </Pressable>
+            <Pressable
+              style={styles.button}
+              onPress={() => setEditModalVisible(false)}
+            >
+              <Text style={styles.buttonText}>Cancel Update</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };

@@ -103,19 +103,10 @@ const Register = () => {
           <Text style={[styles.text, styles.textButton]}> Choose Image</Text>
         </Pressable>
       </View>
-      {/* <View style={[styles.buttonBox]}>
-        <Pressable style={[styles.button]} onPress={uploadFile}>
-          <Text style={[styles.text, styles.textButton]}> Update PHoto</Text>
-        </Pressable>
-      </View> */}
       <View style={[styles.buttonBox]}>
         <Pressable style={styles.button} onPress={() => HandleSignUp()}>
           <Text style={[styles.text, styles.textButton]}>Sign Up</Text>
         </Pressable>
-
-        <Text style={{ marginTop: 20, marginBottom: 20 }}>
-          ______________________ or ______________________
-        </Text>
         <Link href={"/account/login"} style={styles.textLink}>
           I have an Account. Go to Sign In
         </Link>

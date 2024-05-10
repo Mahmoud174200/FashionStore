@@ -53,30 +53,6 @@ const Login = () => {
           <Pressable style={styles.button} onPress={() => HandleSignIn()}>
             <Text style={[styles.text, styles.textButton]}>Sign in</Text>
           </Pressable>
-
-          <Text style={{ marginTop: 20, marginBottom: 20 }}>
-            ______________________ or ______________________
-          </Text>
-          <View style={{ flexDirection: "row", marginTop: 10 }}>
-            <Pressable style={styles.logo1}>
-              {/* <Image
-              style={{ width: 40, height: 40, margin: 10 }}
-              source={require("../assets/images/facebook-logo-1-2.png")}
-            /> */}
-            </Pressable>
-            <Pressable style={styles.logo1}>
-              {/* <Image
-              style={{ width: 40, height: 40, margin: 10 }}
-              source={require("../assets/images/Apple-Emblem.png")}
-            /> */}
-            </Pressable>
-            <Pressable style={styles.logo1}>
-              {/* <Image
-              style={{ width: 40, height: 40, margin: 10 }}
-              source={require("../assets/images/Google-Symbol.png")}
-            /> */}
-            </Pressable>
-          </View>
           <Link href={"/account/forgetPassword"} style={styles.textLink}>
             ForgetPassword??
           </Link>

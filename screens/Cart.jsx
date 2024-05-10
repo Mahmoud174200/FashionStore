@@ -9,7 +9,7 @@ import {
   Pressable,
   ActivityIndicator,
 } from "react-native";
-import { db } from "../firebase/Config"; // Update path if needed
+import { db } from "../firebase/Config"; 
 import {
   collection,
   query,
@@ -78,7 +78,7 @@ export default function Cart() {
           data={cartItems}
           renderItem={({ item }) => (
             <CartItem
-              key={item.id.toString()} // Using the document ID as the key
+              key={item.id.toString()} 
               productId={item.ProductId}
               quantity={item.productQuantity}
               totalPrice={item.totalPrice}

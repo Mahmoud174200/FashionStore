@@ -9,11 +9,10 @@ import {
   Image,
   Alert,
 } from "react-native";
-// import { updatePassword } from "firebase/auth"; // Import updatePassword method from Firebase Authentication
-import { getCurrentUserUuid, getUser , updatePassword } from "../firebase/users"; // Assuming these functions are correctly implemented
+// import { updatePassword } from "firebase/auth"; 
+import { getCurrentUserUuid, getUser , updatePassword } from "../firebase/users"; 
 import { router } from "expo-router";
 
-// Define the UpdatePassword component
 const UpdatePassword = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

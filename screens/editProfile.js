@@ -60,9 +60,10 @@ const EditProfile = () => {
       });
       if (!result.canceled) {
         setImage(result.assets[0].uri);
+        alert("Image Uploaded");
+      } else {
+        alert(" Upload Image Canceled");
       }
-      alert("Image Uploaded");
-
     } catch (error) {
       console.error("Error Picking Image:", error);
     }
@@ -70,7 +71,7 @@ const EditProfile = () => {
 
   return (
     <View style={styles.container}>
-      <Pressable  onPress={() => router.replace("/Profile")}>
+      <Pressable onPress={() => router.replace("/Profile")}>
         <Image
           style={{ width: 25, height: 25, margin: 3 }}
           source={require("../assets/images/th_1.jpg")}
@@ -100,7 +101,10 @@ const EditProfile = () => {
       <Pressable style={styles.button} onPress={handleSubmit}>
         <Text style={styles.buttonText}>Save</Text>
       </Pressable>
-      <Pressable style={styles.button} onPress={() => router.replace("/Profile")}>
+      <Pressable
+        style={styles.button}
+        onPress={() => router.replace("/Profile")}
+      >
         <Text style={styles.buttonText}>Back To Profile</Text>
       </Pressable>
     </View>

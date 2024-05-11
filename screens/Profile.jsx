@@ -10,8 +10,7 @@ import {
 } from "react-native";
 import { Link, router } from "expo-router";
 import { getCurrentUserUuid, getUser, updateUser } from "../firebase/users";
-import { signOutHandler } from "../firebase/auth"; // Assuming this function handles sign-out
-import { Ionicons } from "@expo/vector-icons";
+import { signOutHandler } from "../firebase/auth"; 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
   const [isadmin, setAdmin] = useState(false);

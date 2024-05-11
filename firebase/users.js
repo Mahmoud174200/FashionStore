@@ -33,7 +33,7 @@ const updateUser = async (data, uuid) => {
     const user = await getUser(uuid);
     user.firstName = data.firstName;
     user.lastName = data.lastName;
-    user.profileImage = data.profileImage;
+    user.image = data.image;
     const documentReference = doc(db, "users", user.id);
     await updateDoc(documentReference, data);
     console.log("user updated successfully!");

@@ -81,7 +81,25 @@ const ProductsScreen = () => {
       console.error("Error Picking Image:", error);
     }
   };
-
+  const uploadFile = async () => {
+    setUploading(true);
+    try {
+      const { uri } = await FileSystem.getInfoAsync(image);
+      const blob = await fetch(uri).then((response) => response.blob());
+      const filename = uri.substring(uri.lastIndexOf("/") + 1);
+      const ref = firebase.storage().ref().child(filename);
+      await ref.put(blob);
+      setUrl(await ref.getDownloadURL());
+      console.log("Download URL:", url);
+      Alert.alert("Upload Completed");
+      // setImage(null);
+    } catch (error) {
+      console.error("Upload failed:", error);
+      Alert.alert("Upload Failed");
+    } finally {
+      setUploading(false);
+    }
+  };
   const handleAddProduct = async () => {
     try {
       if (!productName || !productPrice || !image) {
@@ -91,7 +109,7 @@ const ProductsScreen = () => {
       const newProduct = {
         name: productName,
         price: parseFloat(productPrice),
-        photoURL: image,
+        photoURL: url,
       };
       await createProduct(newProduct);
       Alert.alert("Success", "Product added successfully.");
@@ -101,7 +119,7 @@ const ProductsScreen = () => {
       setUrl("");
     } catch (error) {
       console.error("Error creating product:", error);
-      alert("An error occurred while creating the product.");
+      Alert.alert("An error occurred while creating the product.");
     }
   };
 
@@ -115,7 +133,6 @@ const ProductsScreen = () => {
         name: productName,
         price: parseFloat(productPrice),
       };
-
       if (image) {
         setUploading(true);
         const { uri } = await FileSystem.getInfoAsync(image);
@@ -169,6 +186,9 @@ const ProductsScreen = () => {
         )}
         <Pressable style={styles.button} onPress={pickFile}>
           <Text style={styles.buttonText}> Choose Image</Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={uploadFile}>
+          <Text style={styles.buttonText}> Upload Image</Text>
         </Pressable>
         <Pressable style={styles.button} onPress={handleAddProduct}>
           <Text style={styles.buttonText}>Add Product</Text>

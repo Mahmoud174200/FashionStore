@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "myEX",
+    "name": "Fashion store",
     "slug": "myEX",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/store.jpg",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/store.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -20,10 +20,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/store.jpg",
         "backgroundColor": "#ffffff"
       },
+<<<<<<< HEAD
       "package": "com.mahmoud1776.myEX"
+=======
+      "package": "com.mohamed_ragab.myEX"
+>>>>>>> c99653209f94ff1d7f30ed424bc001ca3782bd20
     },
     "web": {
       "bundler": "metro",
@@ -41,7 +45,11 @@
         "origin": false
       },
       "eas": {
+<<<<<<< HEAD
         "projectId": "637ae7ba-e5ae-4f09-bfba-32dc4a500180"
+=======
+        "projectId": "16a87f11-c7fd-4101-9308-af9b7716859b"
+>>>>>>> c99653209f94ff1d7f30ed424bc001ca3782bd20
       }
     }
   }

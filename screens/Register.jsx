@@ -19,7 +19,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [image, setImage] = useState(null);
-  // const [url, setUrl] = useState("");
+  const [url, setUrl] = useState("");
   const [loading, setUploading] = useState(false);
   const [error, setError] = useState("");
 
@@ -38,6 +38,25 @@ const Register = () => {
       console.error("Error Picking Image:", error);
     }
   };
+  // const uploadFile = async () => {
+  //   setUploading(true);
+  //   try {
+  //     const { uri } = await FileSystem.getInfoAsync(image);
+  //     const blob = await fetch(uri).then((response) => response.blob());
+  //     const filename = uri.substring(uri.lastIndexOf("/") + 1);
+  //     const ref = firebase.storage().ref().child(filename);
+  //     await ref.put(blob);
+  //     setUrl(await ref.getDownloadURL());
+  //     console.log("Download URL:", url);
+  //     Alert.alert("Upload Completed");
+  //     // setImage(nul/l);
+  //   } catch (error) {
+  //     console.error("Upload failed:", error);
+  //     Alert.alert("Upload Failed");
+  //   } finally {
+  //     setUploading(false);
+  //   }
+  // };
   const HandleSignUp = () => {
     signUpHandler(email, firstName, lastName, image, password, setError);
   };
@@ -45,12 +64,9 @@ const Register = () => {
     <View style={styles.container}>
       <View style={[styles.imageBox]}>
         <Image
-          style={{ width: 150, height: 100,marginTop:20 }}
+          style={{ width: 150, height: 100, marginTop: 20 }}
           source={require("../assets/images/pageicon.png")}
         />
-      </View>
-      <View>
-        {/* <Image style={{ width: 50, height: 50 }} source={{ uri: image }} /> */}
       </View>
       <View style={[styles.inputBox]}>
         <Text style={[styles.text, styles.inputLabel]}>First Name:</Text>
@@ -104,6 +120,16 @@ const Register = () => {
         </Pressable>
       </View>
       <View style={[styles.buttonBox]}>
+        {/* <Pressable
+          style={styles.button}
+          onPress={() => {
+            uploadFile();
+          }}
+        >
+          <Text style={[styles.text, styles.textButton]}> Upload Image</Text>
+        </Pressable>
+      </View>
+      <View style={[styles.buttonBox]}> */}
         <Pressable style={styles.button} onPress={() => HandleSignUp()}>
           <Text style={[styles.text, styles.textButton]}>Sign Up</Text>
         </Pressable>
@@ -158,7 +184,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "60%",
-    height:45,
+    height: 45,
     padding: "1%",
     borderRadius: 15,
   },

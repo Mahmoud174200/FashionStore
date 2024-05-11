@@ -38,27 +38,27 @@ const Register = () => {
       console.error("Error Picking Image:", error);
     }
   };
-  const uploadFile = async () => {
-    setUploading(true);
-    try {
-      const { uri } = await FileSystem.getInfoAsync(image);
-      const blob = await fetch(uri).then((response) => response.blob());
-      const filename = uri.substring(uri.lastIndexOf("/") + 1);
-      const ref = firebase.storage().ref().child(filename);
-      await ref.put(blob);
-      setUrl(await ref.getDownloadURL());
-      console.log("Download URL:", url);
-      Alert.alert("Upload Completed");
-      // setImage(nul/l);
-    } catch (error) {
-      console.error("Upload failed:", error);
-      Alert.alert("Upload Failed");
-    } finally {
-      setUploading(false);
-    }
-  };
+  // const uploadFile = async () => {
+  //   setUploading(true);
+  //   try {
+  //     const { uri } = await FileSystem.getInfoAsync(image);
+  //     const blob = await fetch(uri).then((response) => response.blob());
+  //     const filename = uri.substring(uri.lastIndexOf("/") + 1);
+  //     const ref = firebase.storage().ref().child(filename);
+  //     await ref.put(blob);
+  //     setUrl(await ref.getDownloadURL());
+  //     console.log("Download URL:", url);
+  //     Alert.alert("Upload Completed");
+  //     // setImage(nul/l);
+  //   } catch (error) {
+  //     console.error("Upload failed:", error);
+  //     Alert.alert("Upload Failed");
+  //   } finally {
+  //     setUploading(false);
+  //   }
+  // };
   const HandleSignUp = () => {
-    signUpHandler(email, firstName, lastName, url, password, setError);
+    signUpHandler(email, firstName, lastName, image, password, setError);
   };
   return (
     <View style={styles.container}>
@@ -120,7 +120,7 @@ const Register = () => {
         </Pressable>
       </View>
       <View style={[styles.buttonBox]}>
-        <Pressable
+        {/* <Pressable
           style={styles.button}
           onPress={() => {
             uploadFile();
@@ -129,7 +129,7 @@ const Register = () => {
           <Text style={[styles.text, styles.textButton]}> Upload Image</Text>
         </Pressable>
       </View>
-      <View style={[styles.buttonBox]}>
+      <View style={[styles.buttonBox]}> */}
         <Pressable style={styles.button} onPress={() => HandleSignUp()}>
           <Text style={[styles.text, styles.textButton]}>Sign Up</Text>
         </Pressable>

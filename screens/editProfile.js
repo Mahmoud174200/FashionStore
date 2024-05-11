@@ -10,6 +10,9 @@ import {
 } from "react-native";
 import { getCurrentUserUuid, getUser, updateUser } from "../firebase/users";
 import * as ImagePicker from "expo-image-picker";
+import * as FileSystem from "expo-file-system";
+import firebase from "firebase/compat/app";
+
 import { router } from "expo-router";
 
 const EditProfile = () => {
@@ -17,12 +20,13 @@ const EditProfile = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [image, setImage] = useState("");
-
+  const [url, setUrl] = useState("");
+  const [loading, setUploading] = useState(false);
   const handleSubmit = async () => {
     const data = {
       firstName: firstName,
       lastName: lastName,
-      image: image,
+      image: url,
     };
     const id = await getCurrentUserUuid();
     await updateUser(data, id);
@@ -60,7 +64,7 @@ const EditProfile = () => {
       });
       if (!result.canceled) {
         setImage(result.assets[0].uri);
-        alert("Image Uploaded");
+        // alert("Image Uploaded");
       } else {
         alert(" Upload Image Canceled");
       }
@@ -96,6 +100,19 @@ const EditProfile = () => {
         />
       </Pressable>
       <Text style={styles.title}>Edit Profile</Text>
+      <View style={{alignItems:"center",}}>
+      {image && (
+          <Image
+            source={{ uri: image }}
+            style={{
+              width: 200,
+              height: 200,
+              marginVertical: 7.5,
+              borderRadius:150,
+            }}
+          />
+        )}
+      </View>
       <TextInput
         style={styles.input}
         placeholder="FirstName"
@@ -115,6 +132,14 @@ const EditProfile = () => {
         }}
       >
         <Text style={styles.buttonText}>Change Image Profile</Text>
+      </Pressable>
+      <Pressable
+        style={styles.button}
+        onPress={() => {
+          uploadFile();
+        }}
+      >
+        <Text style={styles.buttonText}>Upload Image Profile</Text>
       </Pressable>
       <Pressable style={styles.button} onPress={handleSubmit}>
         <Text style={styles.buttonText}>Save</Text>

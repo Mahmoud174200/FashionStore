@@ -23,8 +23,6 @@ const createProduct = async (data) => {
   try {
     const newProduct = await addDoc(productCollectionReference, data);
     console.log("Product added successfully:", newProduct.id);
-    alert("Product added successfully");
-
   } catch (err) {
     console.log("Failed to add product:", err.message);
   }

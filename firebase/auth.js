@@ -45,12 +45,21 @@ const signInHandler = async (email, password, error) => {
     const cred = await signInWithEmailAndPassword(auth, email, password);
     console.log(cred.user.email);
     const id = getCurrentUserUuid();
-    const user = getUser(id);
+    const user = await getUser(id);
     router.replace("/app");
   } catch (err) {
-    const message = err.message.substring(err.message.indexOf(":"));
-    error(message.substring(2));
-    console.log(err.message);
+    let message = err.message;
+    if (err.code === "auth/user-not-found") {
+      message = "User not found. Please check your email and try again.";
+    } else if (err.code === "auth/wrong-password") {
+      message = "Invalid password. Please try again.";
+    } else if (err.code === "auth/invalid-email") {
+      message = "Invalid Email. Please try again.";
+    } else {
+      message = "An error occurred. Please try again later.";
+    }
+    error(message);
+    console.log(message);
   }
 };
 

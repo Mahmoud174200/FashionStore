@@ -68,7 +68,25 @@ const EditProfile = () => {
       console.error("Error Picking Image:", error);
     }
   };
-
+  const uploadFile = async () => {
+    setUploading(true);
+    try {
+      const { uri } = await FileSystem.getInfoAsync(image);
+      const blob = await fetch(uri).then((response) => response.blob());
+      const filename = uri.substring(uri.lastIndexOf("/") + 1);
+      const ref = firebase.storage().ref().child(filename);
+      await ref.put(blob);
+      setUrl(await ref.getDownloadURL());
+      console.log("Download URL:", url);
+      Alert.alert("Upload Completed");
+      // setImage(null);
+    } catch (error) {
+      console.error("Upload failed:", error);
+      Alert.alert("Upload Failed");
+    } finally {
+      setUploading(false);
+    }
+  };
   return (
     <View style={styles.container}>
       <Pressable onPress={() => router.replace("/Profile")}>

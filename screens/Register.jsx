@@ -33,15 +33,11 @@ const Register = () => {
       });
       if (!result.canceled) {
         setImage(result.assets[0].uri);
-      await  HandleUpdate();
       }
     } catch (error) {
       console.error("Error Picking Image:", error);
     }
   };
-  const HandleUpdate=async()=>{
-    await uploadFile();
-  }
   const uploadFile = async () => {
     setUploading(true);
     try {
@@ -68,7 +64,7 @@ const Register = () => {
     <View style={styles.container}>
       <View style={[styles.imageBox]}>
         <Image
-          style={{ width: 150, height: 100,marginTop:20 }}
+          style={{ width: 150, height: 100, marginTop: 20 }}
           source={require("../assets/images/pageicon.png")}
         />
       </View>
@@ -121,6 +117,16 @@ const Register = () => {
           }}
         >
           <Text style={[styles.text, styles.textButton]}> Choose Image</Text>
+        </Pressable>
+      </View>
+      <View style={[styles.buttonBox]}>
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            uploadFile();
+          }}
+        >
+          <Text style={[styles.text, styles.textButton]}> Upload Image</Text>
         </Pressable>
       </View>
       <View style={[styles.buttonBox]}>
@@ -178,7 +184,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "60%",
-    height:45,
+    height: 45,
     padding: "1%",
     borderRadius: 15,
   },
